@@ -5,9 +5,116 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #006a85;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+nav {
+  padding: 0 1rem;  /* сверху/снизу 0, справа/слева 1rem */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: x-large;
+}
+
+.content {
+  min-height: calc(100vh - 70px - 64px);
+  padding: 1.5rem 0; /* сверху/снизу 1.5rem, справа/слева 0 */
+}
+
+.goods {
+  display: grid; /* дисплей сетка, и для этой сетки колонки будут повторяться по следующему правилу: ниже размеры (minmax это от и до) */
+  grid-template-columns: repeat(auto-fill, minmax(170px, 220px));
+  gap: 2rem;  /* расстояние между эл */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.cart {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+
+  cursor: pointer;
+  z-index: 5;  /* //чтобы всегда поверх других элементов */
+  padding: 1rem;
+}
+/* //начиная с ширины 700px мы будем менять значение .cart, от верха 5rem */
+@media (min-width: 700px) {
+    .cart {
+      top: 5rem;
+      bottom: unset;
+    }
+}
+
+
+.backet-list {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: #fff;
+  width: 35rem;
+  max-width: 95%; /* если маленькое устройство то макс ширина 95% */
+
+  box-shadow: inset -1px 3px 8px 5px #1f87ff;
+
+  animation: show 500ms ease-in-out; /* анимация будет называться show, будет длиться 500милисекунд и у нее будет тип изи ин аут */
+}
+
+.basket-close {
+  cursor: pointer;
+  position:absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: #fff;
+}
+
+.basket-delete {
+  cursor: pointer;
+}
+
+@keyframes show {
+  from {
+    top: 70%;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+.x-content {
+  font-size: x-large;
+  padding: 0 1rem; /* сверху/снизу 0, справа/слева 1rem */
+}
+
+.plusMinusKolichestvo {
+  cursor: pointer;
+  vertical-align: middle;
+  color: #26a69a;
+}
+
+#toast-container {
+  top: 2rem !important;
+  animation: fade-in 250ms ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opasity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opasity: 1;
+    transform: translateY(0rem);
+  }
 }
